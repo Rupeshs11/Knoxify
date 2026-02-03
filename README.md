@@ -38,7 +38,7 @@ A modern web application that converts text files to natural-sounding speech usi
 ## Project Structure
 
 ```
-Knoxify-webTTS/
+Knoxify/
 ├── app.py                 # Flask backend
 ├── lambda_function.py     # AWS Lambda function code
 ├── requirements.txt       # Python dependencies
@@ -203,8 +203,8 @@ Set your region to **us-east-1** (N. Virginia) for all resources.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/Knoxify-webTTS.git
-cd Knoxify-webTTS
+git clone https://github.com/Rupeshs11/Knoxify.git
+cd Knoxify
 ```
 
 ### 2. Create Virtual Environment

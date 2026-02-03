@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Knoxify - Convert text files to natural-sounding speech using AI voices">
+    <title>Knoxify | Text to Speech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <div class="card">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="title">Knoxify</h1>
+                <p class="subtitle">Turn text into voice</p>
+            </header>
+
+            <!-- Upload Form -->
+            <form id="uploadForm" class="form">
+                <!-- File Upload -->
+                <div class="form-group">
+                    <label for="fileInput" class="label">Upload Text File</label>
+                    <div class="file-input-wrapper">
+                        <input 
+                            type="file" 
+                            id="fileInput" 
+                            name="file" 
+                            accept=".txt" 
+                            required
+                        >
+                        <div class="file-input-display">
+                            <span class="file-icon">📄</span>
+                            <span class="file-text" id="fileName">Choose a .txt file</span>
+                        </div>
+                    </div>
+                    <p class="hint">Max file size: 50 KB</p>
+                </div>
+
+                <!-- Voice Selection -->
+                <div class="form-group">
+                    <label for="voiceSelect" class="label">Select Voice</label>
+                    <select id="voiceSelect" name="voice" class="select" required>
+                        {% for voice in voices %}
+                        <option value="{{ voice }}">{{ voice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="convertBtn" class="btn btn-primary">
+                    <span class="btn-text">Convert to Audio</span>
+                    <span class="btn-loader" hidden>
+                        <span class="spinner"></span>
+                        Processing...
+                    </span>
+                </button>
+            </form>
+
+            <!-- Status Section -->
+            <div id="statusSection" class="status-section" hidden>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span id="statusText" class="status-text">Idle</span>
+                </div>
+            </div>
+
+            <!-- Error Section -->
+            <div id="errorSection" class="error-section" hidden>
+                <p id="errorText" class="error-text"></p>
+            </div>
+
+            <!-- Audio Player Section -->
+            <div id="audioSection" class="audio-section" hidden>
+                <div class="audio-header">
+                    <span class="audio-icon">🎧</span>
+                    <span class="audio-title">Your audio is ready!</span>
+                </div>
+                
+                <audio id="audioPlayer" class="audio-player" controls>
+                    Your browser does not support the audio element.
+                </audio>
+                
+                <a id="downloadBtn" href="#" class="btn btn-secondary" download>
+                    Download MP3
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by AWS Polly</p>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
